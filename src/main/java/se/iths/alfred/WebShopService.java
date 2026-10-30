@@ -1,11 +1,6 @@
 package se.iths.alfred;
 
 import se.iths.alfred.model.*;
-import se.iths.alfred.model.Computer;
-import se.iths.alfred.model.Headset;
-import se.iths.alfred.model.Monitor;
-import se.iths.alfred.model.Mouse;
-import se.iths.alfred.model.Phone;
 
 import java.util.List;
 
@@ -58,6 +53,10 @@ public class WebShopService {
         return webcams.stream()
                 .filter(webcam -> webcam.megapixels() <= minMegapixels)
                 .map(webcam -> webcam.title())
+                .findFirst()
+                .orElseThrow();
+    }
+
     public Keyboard findFirstKeyboardByWireless(
             List<Keyboard> keyboards, boolean wireless) {
         return keyboards.stream()
