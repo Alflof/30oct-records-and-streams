@@ -1,10 +1,6 @@
 package se.iths.alfred;
 
-import se.iths.alfred.model.Computer;
-import se.iths.alfred.model.Headset;
-import se.iths.alfred.model.Monitor;
-import se.iths.alfred.model.Mouse;
-import se.iths.alfred.model.Phone;
+import se.iths.alfred.model.*;
 
 import java.util.List;
 
@@ -36,7 +32,7 @@ public class WebShopService {
     }
 
     public String findFirstHeadsetTitleUnderPrice(
-            List<Headset> headsets, double maxPrice){
+            List<Headset> headsets, double maxPrice) {
         return headsets.stream()
                 .filter(headset -> headset.price() < maxPrice)
                 .map(headset -> headset.title())
@@ -49,6 +45,14 @@ public class WebShopService {
         return monitors.stream()
                 .filter(monitor -> monitor.inches() >= minInches)
                 .map(monitor -> monitor.title())
+                .findFirst()
+                .orElseThrow();
+    }
+
+    public String findFirstWebcamTitleByMinResolution(List<Webcam> webcams, int minMegapixels) {
+        return webcams.stream()
+                .filter(webcam -> webcam.megapixels() <= minMegapixels)
+                .map(webcam -> webcam.title())
                 .findFirst()
                 .orElseThrow();
     }
