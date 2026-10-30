@@ -1,5 +1,6 @@
 package se.iths.alfred;
 
+import se.iths.alfred.model.*;
 import se.iths.alfred.model.Computer;
 import se.iths.alfred.model.Headset;
 import se.iths.alfred.model.Monitor;
@@ -49,6 +50,14 @@ public class WebShopService {
         return monitors.stream()
                 .filter(monitor -> monitor.inches() >= minInches)
                 .map(monitor -> monitor.title())
+                .findFirst()
+                .orElseThrow();
+    }
+
+    public Keyboard findFirstKeyboardByWireless(
+            List<Keyboard> keyboards, boolean wireless) {
+        return keyboards.stream()
+                .filter(keyboard -> keyboard.wireless() == wireless)
                 .findFirst()
                 .orElseThrow();
     }
