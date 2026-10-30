@@ -37,7 +37,7 @@ public class WebShopService {
     }
 
     public String findFirstHeadsetTitleUnderPrice(
-            List<Headset> headsets, double maxPrice){
+            List<Headset> headsets, double maxPrice) {
         return headsets.stream()
                 .filter(headset -> headset.price() < maxPrice)
                 .map(headset -> headset.title())
@@ -54,6 +54,10 @@ public class WebShopService {
                 .orElseThrow();
     }
 
+    public String findFirstWebcamTitleByMinResolution(List<Webcam> webcams, int minMegapixels) {
+        return webcams.stream()
+                .filter(webcam -> webcam.megapixels() <= minMegapixels)
+                .map(webcam -> webcam.title())
     public Keyboard findFirstKeyboardByWireless(
             List<Keyboard> keyboards, boolean wireless) {
         return keyboards.stream()
