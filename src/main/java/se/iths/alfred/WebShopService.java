@@ -1,6 +1,7 @@
 package se.iths.alfred;
 
 import se.iths.alfred.model.Computer;
+import se.iths.alfred.model.Mouse;
 import se.iths.alfred.model.Phone;
 
 import java.util.List;
@@ -14,6 +15,14 @@ public class WebShopService {
                 .findFirst()
                 .orElseThrow(); //NoSuchElementException kastas här (unchecked)
         return computer;
+
+    }
+
+    public Mouse findFirstMouseByMinDpi(List<Mouse> mice, int minDpi) {
+        return mice.stream()
+                .filter(mouse -> mouse.dpi() >= minDpi)
+                .findFirst()
+                .orElseThrow();
     }
 
     public Phone findFirstPhoneUnderPrice(
