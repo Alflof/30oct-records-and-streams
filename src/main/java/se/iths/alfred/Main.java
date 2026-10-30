@@ -1,19 +1,27 @@
 package se.iths.alfred;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import se.iths.alfred.model.Computer;
+
+import java.util.List;
+
 public class Main {
     static void main() {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        IO.println(String.format("Hello and welcome!"));
+        Computer computer = new Computer("Macbook", 100);
+        Computer pc = new Computer("PC", 10);
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            IO.println("i = " + i);
+        List<Computer> computerList = List.of(computer, pc);
 
-            IO.println("test");
-        }
+        WebShopService webShopService = new WebShopService();
+
+//        Optional<Computer> mostExpensive = webShopService.findMostExpensiveComputer(computerList);
+//
+//        if (mostExpensive.isPresent()) {
+//            IO.println(mostExpensive.get());
+//        }
+
+        IO.println(webShopService.findMostExpensiveComputer(computerList));
+
+//        System.out.printf("Dator med title %s och pris %s", computer.title(), computer.price());
     }
+
 }
