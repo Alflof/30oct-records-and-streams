@@ -1,6 +1,7 @@
 package se.iths.alfred;
 
 import se.iths.alfred.model.Computer;
+import se.iths.alfred.model.Monitor;
 import se.iths.alfred.model.Mouse;
 import se.iths.alfred.model.Phone;
 
@@ -29,6 +30,15 @@ public class WebShopService {
             List<Phone> phones, double maxPrice) {
         return phones.stream()
                 .filter(phone -> phone.price() < maxPrice)
+                .findFirst()
+                .orElseThrow();
+    }
+
+    public String findFirstMonitorTitleByMinSize(
+            List<Monitor> monitors, int minInches) {
+        return monitors.stream()
+                .filter(monitor -> monitor.inches() >= minInches)
+                .map(monitor -> monitor.title())
                 .findFirst()
                 .orElseThrow();
     }
